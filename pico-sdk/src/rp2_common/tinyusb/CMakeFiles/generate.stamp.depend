@@ -1,0 +1,8 @@
+# CMake generation dependency list for this directory.
+C:/Users/burly/.pico-sdk/cmake/v3.29.9/share/cmake-3.29/Modules/CMakePrintHelpers.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/lib/tinyusb/hw/bsp/family_support.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/lib/tinyusb/hw/bsp/rp2040/boards/pico_sdk/board.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/lib/tinyusb/hw/bsp/rp2040/family.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/lib/tinyusb/hw/bsp/rp2040/pico_sdk_import.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/pico_sdk_init.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/src/rp2_common/tinyusb/CMakeLists.txt

@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Users/burly/.pico-sdk/cmake/v3.29.9/share/cmake-3.29/Modules/FindDoxygen.cmake
+C:/Users/burly/.pico-sdk/cmake/v3.29.9/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/burly/.pico-sdk/cmake/v3.29.9/share/cmake-3.29/Modules/FindPackageMessage.cmake
+C:/Users/burly/.pico-sdk/sdk/2.1.0/docs/CMakeLists.txt
