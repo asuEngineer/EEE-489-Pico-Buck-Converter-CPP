@@ -7,12 +7,15 @@
 
 const uint PWM_PIN = 16;   //(GP16)
 const uint ADC_PIN = 26;  // ADC0 (GP26)
+const uint LED_PIN = 25;  // built in LED
 
 
 int PWM_frequency = 200000;
 float max_charge_battery = 15;
 float desired_output_voltage = 1;
-float duty_cycle = 0;
+float duty_cycle = 0; //this just intitalizes the variable to 0, do not change
+
+
 
 int find_wrap() {
     return ((125 * (pow(10,6)))/PWM_frequency) - 1;
@@ -20,10 +23,15 @@ int find_wrap() {
 
 void setup_pwm() {
     gpio_set_function(PWM_PIN, GPIO_FUNC_PWM);
+    gpio_set_function(LED_PIN, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(PWM_PIN);
+    uint slice_num2 = pwm_gpio_to_slice_num(LED_PIN);
     pwm_set_wrap(slice_num, find_wrap());  // Set PWM frequency to 200kHz
+    pwm_set_wrap(slice_num2, find_wrap());
     pwm_set_chan_level(slice_num, pwm_gpio_to_channel(PWM_PIN), (find_wrap()*.2));  // Initial duty cycle 20%
+    pwm_set_chan_level(slice_num2, pwm_gpio_to_channel(LED_PIN), (find_wrap()*.2));  //sets the LED pin to be the same for visual feedback
     pwm_set_enabled(slice_num, true);
+    pwm_set_enabled(slice_num2, true);
 }
 
 float read_voltage() {
@@ -61,6 +69,8 @@ int main() {
     stdio_init_all();
     adc_init();
     adc_gpio_init(ADC_PIN);
+   // int rc = pico_led_init();
+   // hard_assert(rc == PICO_OK);
 
     setup_pwm();
 
@@ -69,6 +79,7 @@ int main() {
         float desired_PWM_voltage_from_feedback = mapInputToOutput(read_voltage());
         
         duty_cycle = desired_PWM_voltage_from_feedback / 3.3;  // Normalize to 0-1 range
+        printf("duty cycle = %f\n", duty_cycle);
 
         if (duty_cycle > 1.0) duty_cycle = 1.0;  // Limit duty cycle to 100%
         if (duty_cycle < 0.0) duty_cycle = 0.0;  // Prevent negative duty cycle
